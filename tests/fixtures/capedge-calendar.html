@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My dashboard | CapEdge</title>
+</head>
+<body>
+  <!-- Navigation with logout form for auth detection -->
+  <div class="dropdown-menu">
+    <form action="https://capedge.com/api/user/logout" method="post">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+
+  <!-- Calendar container -->
+  <div class="row row-cards row-deck calendar-container">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title calendar-title">February 2026</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered calendar-table">
+            <thead>
+              <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+              </tr>
+            </thead>
+            <tbody class="calendar-body">
+              <tr>
+                <td data-date="2026-02-01"><div class="day-num">1</div></td>
+                <td data-date="2026-02-02"><div class="day-num">2</div></td>
+                <td data-date="2026-02-03"><div class="day-num">3</div></td>
+                <td data-date="2026-02-04">
+                  <div class="day-num">4</div>
+                  <a class="data-list-item metadata-item" href="https://capedge.com/filing/897322" data-metadata="6-K">GILT</a>
+                </td>
+                <td data-date="2026-02-05"><div class="day-num">5</div></td>
+                <td data-date="2026-02-06"><div class="day-num">6</div></td>
+                <td data-date="2026-02-07"><div class="day-num">7</div></td>
+              </tr>
+              <tr>
+                <td data-date="2026-02-08"><div class="day-num">8</div></td>
+                <td data-date="2026-02-09"><div class="day-num">9</div></td>
+                <td data-date="2026-02-10">
+                  <div class="day-num">10</div>
+                  <a class="data-list-item metadata-item" href="https://capedge.com/company/897322/filings" data-metadata="Earnings">GILT</a>
+                  <a class="data-list-item metadata-item" href="https://capedge.com/company/1488917/filings" data-metadata="Earnings">ELMD</a>
+                </td>
+                <td data-date="2026-02-11">
+                  <div class="day-num">11</div>
+                  <a class="data-list-item metadata-item" href="https://capedge.com/company/1016838/filings" data-metadata="Earnings">RDCM</a>
+                </td>
+                <td data-date="2026-02-12">
+                  <div class="day-num">12</div>
+                  <a class="data-list-item metadata-item" href="https://capedge.com/filing/123" data-metadata="10-K">ACME</a>
+                </td>
+                <td data-date="2026-02-13">
+                  <div class="day-num">13</div>
+                  <a class="data-list-item metadata-item" href="https://capedge.com/filing/456" data-metadata="4">BETA</a>
+                </td>
+                <td data-date="2026-02-14">
+                  <div class="day-num">14</div>
+                  <a class="data-list-item metadata-item" href="https://capedge.com/filing/789" data-metadata="S-8">GAMMA</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

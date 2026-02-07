@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar Export</title>
+  <link rel="stylesheet" href="./styles/sidepanel.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>📅 Calendar Export</h1>
+      <p class="subtitle">Extract events from CapEdge to Google Calendar</p>
+    </header>
+
+    <main>
+      <section id="website-selector-section" class="section">
+        <label for="website-select">Website:</label>
+        <select id="website-select" class="input">
+          <option value="capedge">CapEdge</option>
+        </select>
+      </section>
+
+      <section id="status-section" class="section">
+        <div id="status-message" class="status-message"></div>
+      </section>
+
+      <section id="event-filters-section" class="section">
+        <h2>Event Types</h2>
+        <div class="filters">
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-earnings" checked>
+            <span>Earnings</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-financial" checked>
+            <span>Financial (10-K, 10-Q)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-ownership">
+            <span>Ownership (4, 13G, 13D)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-registration">
+            <span>Registration (S-8, S-1)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-news">
+            <span>News (6-K, 8-K)</span>
+          </label>
+        </div>
+      </section>
+
+      <section id="event-preview-section" class="section">
+        <h2>Events Preview</h2>
+        <div id="event-count" class="event-count">0 events</div>
+        <div id="event-list" class="event-list"></div>
+      </section>
+
+      <section id="actions-section" class="section">
+        <button id="refresh-button" class="button button-secondary">
+          🔄 Refresh Events
+        </button>
+        <button id="download-button" class="button button-primary" disabled>
+          ⬇️ Download .ics File
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <p class="help-text">
+        Navigate to your <a href="https://capedge.com/user/dashboard" target="_blank">CapEdge dashboard</a> to extract events.
+      </p>
+    </footer>
+  </div>
+
+  <script type="module" src="./sidepanel.ts"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "name": "to-google-calendar",
+  "version": "1.0.0",
+  "description": "Chrome extension to extract calendar events from CapEdge and export to Google Calendar",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "type-check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManuelBv/to-google-calendar.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "calendar",
+    "capedge",
+    "google-calendar",
+    "ics"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ManuelBv/to-google-calendar/issues"
+  },
+  "homepage": "https://github.com/ManuelBv/to-google-calendar#readme",
+  "dependencies": {
+    "ics": "^3.8.1"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.3.0",
+    "@types/chrome": "^0.0.270",
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^2.1.0",
+    "@vitest/ui": "^2.1.0",
+    "fake-indexeddb": "^6.2.5",
+    "happy-dom": "^15.11.7",
+    "sharp": "^0.34.5",
+    "typescript": "^5.6.0",
+    "vite": "^6.0.0",
+    "vite-plugin-static-copy": "^2.1.0",
+    "vitest": "^2.1.0"
+  }
+}
