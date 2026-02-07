@@ -7,7 +7,10 @@
       "Bash(npm run build:*)",
       "Bash(dir:*)",
       "Bash(node:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial release: Calendar to Google Calendar v1.0.0\n\nComplete Chrome extension for extracting calendar events from CapEdge\nand exporting to Google Calendar via .ics file format.\n\nFeatures:\n- Automatic event extraction from CapEdge dashboard\n- Auto-retry mechanism for slow-loading calendars\n- Side panel UI with event filtering by type\n- Download .ics file for Google Calendar import\n- Professional calendar+export icon\n- Single-click side panel opening\n\nTechnical:\n- Built with Vite + TypeScript + @crxjs/vite-plugin\n- 64 unit tests passing \\(Vitest + happy-dom\\)\n- TDD approach throughout development\n- IndexedDB for local storage\n- Manifest V3 compliant\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ]
   },
   "prefersReducedMotion": true
