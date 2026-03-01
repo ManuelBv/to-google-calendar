@@ -2,6 +2,8 @@
 
 A Chrome extension that extracts calendar events from CapEdge dashboard and exports them to Google Calendar via .ics file format.
 
+**[Download the extension](https://manuelbv.github.io/to-google-calendar/)** from the project page.
+
 ## Features
 
 - **Automatic Event Extraction**: Automatically detects and extracts calendar events from CapEdge dashboard
@@ -27,6 +29,14 @@ A Chrome extension that extracts calendar events from CapEdge dashboard and expo
 - **CapEdge Account**: Active account at https://capedge.com
 
 ## Installation
+
+### Quick Install
+
+1. Download the extension zip from the [project page](https://manuelbv.github.io/to-google-calendar/)
+2. Extract the zip to a folder on your computer
+3. Open `chrome://extensions` in Chrome
+4. Enable **Developer mode** (toggle in top-right)
+5. Click **Load unpacked** and select the extracted folder
 
 ### Development Setup
 
