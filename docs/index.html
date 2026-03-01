@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar to Google Calendar - Chrome Extension</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1a1a2e;
+      background: #f8f9fa;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: #e94560;
+      color: #fff;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .download-btn:hover {
+      background: #d63851;
+    }
+
+    .download-btn span {
+      margin-right: 0.5rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #16213e;
+      border-bottom: 2px solid #e94560;
+      padding-bottom: 0.5rem;
+    }
+
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .features li {
+      list-style: none;
+      padding-left: 0.5rem;
+    }
+
+    .features li::before {
+      content: "\2713\0020";
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    .step-number {
+      display: inline-block;
+      background: #e94560;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .steps li {
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+
+    code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    .repo-link {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .repo-link a {
+      color: #16213e;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .repo-link a:hover {
+      color: #e94560;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Calendar to Google Calendar</h1>
+    <p>A Chrome extension that extracts calendar events from CapEdge and exports them as .ics files for Google Calendar import.</p>
+    <a href="to-google-calendar.zip" class="download-btn">
+      <span>&#11015;</span> Download Extension (.zip)
+    </a>
+  </div>
+
+  <div class="container">
+    <section>
+      <h2>Features</h2>
+      <ul class="features">
+        <li>Extracts calendar events automatically from CapEdge dashboard</li>
+        <li>Auto-retry mechanism for slow-loading calendars</li>
+        <li>Filter events by type: Earnings, Financial (10-K, 10-Q), Ownership, Registration, News</li>
+        <li>Downloads standard .ics file compatible with Google Calendar</li>
+        <li>Side panel UI that stays open while you browse</li>
+        <li>Refresh button clears stale data and re-extracts fresh events</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Installation (Developer Mode)</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-number">1</span>
+          <strong>Download</strong> the extension zip file using the button above
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <strong>Extract</strong> the zip file to a folder on your computer
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          Open Chrome and go to <code>chrome://extensions</code>
+        </li>
+        <li>
+          <span class="step-number">4</span>
+          Enable <strong>Developer mode</strong> using the toggle in the top-right corner
+        </li>
+        <li>
+          <span class="step-number">5</span>
+          Click <strong>Load unpacked</strong> and select the extracted folder
+        </li>
+        <li>
+          <span class="step-number">6</span>
+          The extension icon will appear in your Chrome toolbar
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>How to Use</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-number">1</span>
+          Click the extension icon to open the side panel
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          Navigate to your <a href="https://capedge.com/user/dashboard" target="_blank">CapEdge dashboard</a> &mdash; events are extracted automatically
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          Use the checkboxes to filter events by type (Earnings, Financial, etc.)
+        </li>
+        <li>
+          <span class="step-number">4</span>
+          Click <strong>Download .ics File</strong> to save the calendar file
+        </li>
+        <li>
+          <span class="step-number">5</span>
+          Import into Google Calendar: <em>Settings &rarr; Import &amp; export &rarr; Import</em>
+        </li>
+      </ol>
+    </section>
+
+    <div class="repo-link">
+      <a href="https://github.com/ManuelBv/to-google-calendar" target="_blank">
+        View source code on GitHub &rarr;
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Calendar to Google Calendar &middot; v1.0.0</p>
+  </footer>
+</body>
+</html>
