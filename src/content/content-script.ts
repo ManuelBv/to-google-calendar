@@ -21,31 +21,30 @@ function init() {
     return;
   }
 
-  // Check authentication
-  const authState = parser.detectAuthState(document);
-  if (!authState.isAuthenticated) {
-    console.log('[Calendar Extension] Not authenticated:', authState.reason);
-    chrome.runtime.sendMessage({
-      type: MessageType.PARSING_ERROR,
-      payload: {
-        error: 'Not authenticated',
-        reason: authState.reason
-      }
-    });
-    return;
-  }
-
-  // Check correct page
+  // Check correct page first - if calendar is visible, user is authenticated
   const pageState = parser.detectCorrectPage(document);
   if (!pageState.isCorrectPage) {
-    console.log('[Calendar Extension] Not on correct page:', pageState.reason);
-    chrome.runtime.sendMessage({
-      type: MessageType.PARSING_ERROR,
-      payload: {
-        error: 'Incorrect page',
-        reason: pageState.reason
-      }
-    });
+    // No calendar on page - check if it's an auth issue or wrong page
+    const authState = parser.detectAuthState(document);
+    if (!authState.isAuthenticated) {
+      console.log('[Calendar Extension] Not authenticated:', authState.reason);
+      chrome.runtime.sendMessage({
+        type: MessageType.PARSING_ERROR,
+        payload: {
+          error: 'Not authenticated',
+          reason: authState.reason
+        }
+      });
+    } else {
+      console.log('[Calendar Extension] Not on correct page:', pageState.reason);
+      chrome.runtime.sendMessage({
+        type: MessageType.PARSING_ERROR,
+        payload: {
+          error: 'Incorrect page',
+          reason: pageState.reason
+        }
+      });
+    }
     return;
   }
 

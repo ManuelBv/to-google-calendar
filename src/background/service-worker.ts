@@ -10,7 +10,7 @@ import { ICSGenerator } from '@/shared/generators/ics-generator';
 
 // Initialize database
 const db = new Database();
-db.init().catch((error) => {
+const dbReady = db.init().catch((error) => {
   console.error('[Service Worker] Failed to initialize database:', error);
 });
 
@@ -20,9 +20,21 @@ db.init().catch((error) => {
 chrome.runtime.onMessage.addListener((message: ExtensionMessage, _sender, sendResponse) => {
   (async () => {
     try {
+      await dbReady;
+
       switch (message.type) {
         case MessageType.PARSE_PAGE:
           await handleParsePage(message.payload);
+          break;
+
+        case MessageType.PARSING_ERROR:
+          console.log('[Service Worker] Parsing error:', message.payload.reason || message.payload.error);
+          break;
+
+        case MessageType.CLEAR_EVENTS:
+          await db.clearEvents();
+          console.log('[Service Worker] Cleared all events from database');
+          sendResponse({ success: true });
           break;
 
         case MessageType.GET_EVENTS:

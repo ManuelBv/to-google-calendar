@@ -75,10 +75,6 @@ describe('ICSGenerator', () => {
       (globalThis as any).chrome.downloads = {
         download: vi.fn().mockResolvedValue(1)
       };
-
-      // Mock URL.createObjectURL and revokeObjectURL
-      global.URL.createObjectURL = vi.fn().mockReturnValue('blob:mock-url');
-      global.URL.revokeObjectURL = vi.fn();
     });
 
     it('should trigger download with correct filename', async () => {
@@ -94,28 +90,29 @@ describe('ICSGenerator', () => {
       );
     });
 
-    it('should create blob URL for download', async () => {
+    it('should use data URL for download', async () => {
       const icsContent = 'BEGIN:VCALENDAR\nEND:VCALENDAR';
 
       await generator.download(icsContent);
 
-      expect(URL.createObjectURL).toHaveBeenCalled();
       expect(chrome.downloads.download).toHaveBeenCalledWith(
         expect.objectContaining({
-          url: 'blob:mock-url'
+          url: expect.stringContaining('data:text/calendar;charset=utf-8,')
         })
       );
     });
 
-    it('should revoke blob URL after download', async () => {
+    it('should encode ICS content in data URL', async () => {
       const icsContent = 'BEGIN:VCALENDAR\nEND:VCALENDAR';
 
       await generator.download(icsContent);
 
-      // Wait for timeout to revoke URL
-      await new Promise((resolve) => setTimeout(resolve, 1100));
-
-      expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:mock-url');
+      const expectedUrl = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+      expect(chrome.downloads.download).toHaveBeenCalledWith(
+        expect.objectContaining({
+          url: expectedUrl
+        })
+      );
     });
   });
 

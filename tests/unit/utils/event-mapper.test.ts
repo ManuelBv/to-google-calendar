@@ -52,18 +52,24 @@ describe('event-mapper', () => {
   });
 
   describe('createEventId', () => {
-    it('should create unique ID from website, date, and title', () => {
-      expect(createEventId('capedge', '2026-02-11', 'RDCM')).toBe('capedge-2026-02-11-RDCM');
-      expect(createEventId('capedge', '2025-01-01', 'TEST')).toBe('capedge-2025-01-01-TEST');
+    it('should create unique ID from website, date, title, and metadata', () => {
+      expect(createEventId('capedge', '2026-02-11', 'RDCM', '6-K')).toBe('capedge-2026-02-11-RDCM-6-K');
+      expect(createEventId('capedge', '2025-01-01', 'TEST', 'Earnings')).toBe('capedge-2025-01-01-TEST-Earnings');
     });
 
     it('should handle titles with special characters', () => {
-      expect(createEventId('capedge', '2026-02-11', 'TEST & CO')).toBe('capedge-2026-02-11-TEST & CO');
+      expect(createEventId('capedge', '2026-02-11', 'TEST & CO', '8-K')).toBe('capedge-2026-02-11-TEST & CO-8-K');
     });
 
     it('should create different IDs for same title on different dates', () => {
-      const id1 = createEventId('capedge', '2026-02-11', 'RDCM');
-      const id2 = createEventId('capedge', '2026-02-12', 'RDCM');
+      const id1 = createEventId('capedge', '2026-02-11', 'RDCM', '6-K');
+      const id2 = createEventId('capedge', '2026-02-12', 'RDCM', '6-K');
+      expect(id1).not.toBe(id2);
+    });
+
+    it('should create different IDs for same title and date with different metadata', () => {
+      const id1 = createEventId('capedge', '2026-02-10', 'ELMD', '10-Q');
+      const id2 = createEventId('capedge', '2026-02-10', 'ELMD', '8-K');
       expect(id1).not.toBe(id2);
     });
   });
@@ -82,7 +88,7 @@ describe('event-mapper', () => {
       const record = createEventRecord(parsedEvent, 'capedge', timestamp);
 
       expect(record).toEqual({
-        id: 'capedge-2026-02-11-RDCM',
+        id: 'capedge-2026-02-11-RDCM-Earnings',
         website: 'capedge',
         title: 'RDCM',
         date: '2026-02-11',

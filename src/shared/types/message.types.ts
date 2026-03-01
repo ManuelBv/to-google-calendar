@@ -10,7 +10,9 @@ export enum MessageType {
   PARSING_ERROR = 'PARSING_ERROR',
   GET_EVENTS = 'GET_EVENTS',
   DOWNLOAD_ICS = 'DOWNLOAD_ICS',
-  UPDATE_FILTERS = 'UPDATE_FILTERS'
+  UPDATE_FILTERS = 'UPDATE_FILTERS',
+  CLEAR_EVENTS = 'CLEAR_EVENTS',
+  RE_EXTRACT = 'RE_EXTRACT'
 }
 
 export interface ParsePageMessage {
@@ -57,10 +59,20 @@ export interface UpdateFiltersMessage {
   };
 }
 
+export interface ClearEventsMessage {
+  type: MessageType.CLEAR_EVENTS;
+}
+
+export interface ReExtractMessage {
+  type: MessageType.RE_EXTRACT;
+}
+
 export type ExtensionMessage =
   | ParsePageMessage
   | ParsingCompleteMessage
   | ParsingErrorMessage
   | GetEventsMessage
   | DownloadICSMessage
-  | UpdateFiltersMessage;
+  | UpdateFiltersMessage
+  | ClearEventsMessage
+  | ReExtractMessage;

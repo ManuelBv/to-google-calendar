@@ -135,6 +135,22 @@ export class Database {
   }
 
   /**
+   * Clear only events from database (preserves preferences)
+   */
+  async clearEvents(): Promise<void> {
+    if (!this.db) throw new Error('Database not initialized');
+
+    return new Promise((resolve, reject) => {
+      const transaction = this.db!.transaction(STORE_NAMES.EVENTS, 'readwrite');
+      const store = transaction.objectStore(STORE_NAMES.EVENTS);
+      store.clear();
+
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => reject(transaction.error);
+    });
+  }
+
+  /**
    * Clear all data from database
    */
   async clear(): Promise<void> {

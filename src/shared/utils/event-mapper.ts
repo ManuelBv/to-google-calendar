@@ -43,8 +43,8 @@ export const mapMetadataToEventType = (metadata: string): EventType => {
 /**
  * Create unique event ID
  */
-export const createEventId = (website: string, date: string, title: string): string => {
-  return `${website}-${date}-${title}`;
+export const createEventId = (website: string, date: string, title: string, metadata: string): string => {
+  return `${website}-${date}-${title}-${metadata}`;
 };
 
 /**
@@ -57,7 +57,7 @@ export const createEventRecord = (
 ): EventRecord => {
   return {
     ...parsedEvent,
-    id: createEventId(website, parsedEvent.date, parsedEvent.title),
+    id: createEventId(website, parsedEvent.date, parsedEvent.title, parsedEvent.metadata),
     website,
     timestamp,
     month: getMonthFromDate(parsedEvent.date)

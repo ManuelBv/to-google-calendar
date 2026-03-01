@@ -160,7 +160,14 @@ class SidePanelApp {
       this.refreshButton.disabled = true;
       this.refreshButton.textContent = '🔄 Refreshing...';
 
-      // Get the current tab and trigger content script
+      // Clear old events from IndexedDB
+      await chrome.runtime.sendMessage({ type: MessageType.CLEAR_EVENTS });
+
+      // Clear the UI immediately
+      this.events = [];
+      this.renderEvents();
+
+      // Reload the active tab so the content script re-runs and extracts fresh events
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
       if (!tab?.id) {
@@ -168,11 +175,8 @@ class SidePanelApp {
         return;
       }
 
-      // The content script should automatically run on CapEdge dashboard pages
-      // We just need to reload the events
-      await this.loadEvents();
-
-      this.showInfo('Please navigate to CapEdge dashboard to extract events');
+      await chrome.tabs.reload(tab.id);
+      this.showInfo('Reloading page to extract fresh events...');
     } catch (error) {
       console.error('Failed to refresh:', error);
       this.showError('Failed to refresh events');
